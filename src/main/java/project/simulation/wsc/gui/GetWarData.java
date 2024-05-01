@@ -170,7 +170,7 @@ public class GetWarData {
             textFieldsValues[13] = tropsMoving.getValue();
             textFieldsValues[14] = developmentVariant.getValue();
             textFieldsValues[15] = fieldVariant.getValue();
-            //100 dni do matury
+            //100 dni do matury bejbe co ma byc to bedzie
             //Settings parameters;  //is required to create new class
         });
     }
