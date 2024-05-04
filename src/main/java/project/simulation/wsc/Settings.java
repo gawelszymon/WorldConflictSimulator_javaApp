@@ -1,5 +1,5 @@
 package project.simulation.wsc;
-
+/*
 public class Settings {
     private final String name;
     private final int fieldWidth;
@@ -133,3 +133,4 @@ public class Settings {
         return mutationVariant;
     }
 }
+*/
