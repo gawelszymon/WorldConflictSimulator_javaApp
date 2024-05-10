@@ -30,7 +30,7 @@ public class Settings {
         supportTropsEnergy = Integer.parseInt(config[8]);
         int minimalTroopsChanges = Integer.parseInt(config[9]); //TODO
         int maximalTroopsChanges = Integer.parseInt(config[10]); //TODO
-        tropsLegacyLength = Integer.parseInt(config[11]);
+        tropsLegacyLength = Integer.parseInt(config[11]); //associated directly with overview
 
         if (fieldWidth <= 0 || fieldHeight <= 0) {
             throw new Exception("wrong field dimension data");
@@ -77,6 +77,10 @@ public class Settings {
 
     public IMove getTroopMoving() {
         return troopMoving;
+    }
+
+    public int getTropsLegacyLength() {
+        return tropsLegacyLength;
     }
 
 }

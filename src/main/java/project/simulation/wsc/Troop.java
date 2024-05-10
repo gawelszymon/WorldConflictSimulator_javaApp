@@ -14,7 +14,7 @@ public class Troop implements IMapElement {
     private final int createNewDay;
     private int lifeLength = 0;
     private final int recentImageID;
-    //private final TroopProperty  //TODO
+    private final TroopOverview troopOverviewID;
     private final Settings settings;
 
     public Troop(Vector2D position, Settings settings, int createNewDay) {
@@ -25,7 +25,7 @@ public class Troop implements IMapElement {
 
         recentImageID = random.nextInt(5) + 1;
         map = settings.getMap();
-        //genotype??
+        troopOverviewID = new TroopOverview(settings);
         orientation = MoveDirection.randomDirection();
         energy = settings.getStartTropsEnergy();
         map.place(this);
@@ -38,7 +38,7 @@ public class Troop implements IMapElement {
         recentImageID = firstTroop.getImageID();
         orientation = MoveDirection.randomDirection();
         position = firstTroop.getPosition();
-        //genotype
+        troopOverviewID = new TroopOverview(firstTroop, secondTroop, settings);
         map.place(this);
 
         //firstTroop.loseEnergy(settings.getStartTropsEnergy());
@@ -49,7 +49,12 @@ public class Troop implements IMapElement {
     }
 
     public void changerPosition() {
-        //int numberDirection = //TODO
+        int numberDirection = getOverviewID()[getMainFeatureID()];
+        for(int i = 0; i <= numberDirection; i++) {
+            orientation = orientation.next();
+        }
+        Vector2D oldPosition = position;
+        //TODO Vector2D newPosition = map. //firstly finish AbstarctFieldMap.java
     }
 
     public void move() {
@@ -97,15 +102,15 @@ public class Troop implements IMapElement {
         extraTroops += 1;
     }
 
-//TODO within TroopProperty.java
+//TODO within TroopOverview.java
 
 //    public void newChildren() {
 //        children += 1;
 //    }
 //
-//    public int[] getGenotype() {
-//        return genotype.getAnimalGenotype();
-//    }
+    public int[] getOverviewID() {
+        return troopOverviewID.getTroopOverviewID();
+    }
 //
 //    public int getActiveGenome() {
 //        return genotype.getActiveGenomeAnimal();
@@ -115,9 +120,9 @@ public class Troop implements IMapElement {
 //        genotype.setActiveGenome(currGen);
 //    }
 //
-//    public int getActiveGenomeIdx() {
-//        return genotype.getActiveGenomeIdx();
-//    }
+    public int getMainFeatureID() {
+        return troopOverviewID.getMainFeatureID();
+    }
 
     @Override
     public boolean isTroop() {
