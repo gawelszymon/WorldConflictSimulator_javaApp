@@ -84,7 +84,43 @@ public class Settings {
 
     }
 
-    public AbstractFieldMap getMap(){
+    public String getName() {
+        return name;
+    }
+
+    public int getFieldWidth() {
+        return fieldWidth;
+    }
+
+    public int getFieldHeight() {
+        return fieldHeight;
+    }
+
+    public int getStartTrenchQuantity() {
+        return startTrenchQuantity;
+    }
+
+    public int getRecoveryTrenchEnergy() {
+        return recoveryTrenchEnergy;
+    }
+
+    public int getTrenchPerDay() {
+        return trenchPerDay;
+    }
+
+    public int getSupportTropsEnergy() {
+        return supportTropsEnergy;
+    }
+
+    public int getStartTropsQuantity() {
+        return startTropsQuantity;
+    }
+
+    public int getTropsFullEnergy() {
+        return tropsFullEnergy;
+    }
+
+    public AbstractFieldMap getMap() {
         return map;
     }
 
@@ -92,19 +128,15 @@ public class Settings {
         return startTropsEnergy;
     }
 
-    public int getRecoveryTrenchEnergy() {
-        return startTrenchQuality;
-    }
-
     public IMove getTroopMoving() {
         return troopMoving;
     }
 
-    public int getTropsLegacyLength() {
-        return tropsLegacyLength;
+    public int getTroopsOverViewLength() {
+        return troopsOverViewLength;
     }
 
-    public int ITroopOverview getDevelopmentVariant {
+    public ITroopOverview getDevelopmentVariant() {
         return developmentVariant;
     }
 

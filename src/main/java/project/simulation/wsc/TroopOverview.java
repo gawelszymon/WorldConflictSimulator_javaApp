@@ -10,7 +10,7 @@ public class TroopOverview { //Genome
     private int mainFeatureID;
 
     public TroopOverview(Settings settings) {
-        int troopOverviewLength = settings.getTropsLegacyLength();
+        int troopOverviewLength = settings.getTroopsOverViewLength();
         troopOverviewID = new int[troopOverviewLength];
         for (int i = 0; i < troopOverviewLength; i++) {
             troopOverviewID[i] = random.nextInt(7) + 1;
@@ -44,7 +44,8 @@ public class TroopOverview { //Genome
 
         int[] res = Arrays.copyOf(secondPiece, n);
         System.arraycopy(firstPiece, 0, res, secondPiece.length, firstPiece.length);
-        settings.get
+        settings.getDevelopmentVariant().troopAbilitiesDevelopment(res);
+        troopOverviewID = res;
     }
 
     public int[] getTroopOverviewID() {
