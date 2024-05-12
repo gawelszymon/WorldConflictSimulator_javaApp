@@ -5,24 +5,23 @@ public class Settings {
     private final int fieldWidth;
     private final int fieldHeight;
     private final int startTrenchQuantity;
-    private final int startTrenchQuality; //TODO chaneg into recoveryTrenchEnergy
+    private final int recoveryTrenchEnergy; //TODO change into recoveryTrenchEnergy
     private final int trenchPerDay;
     private final int startTropsQuantity;
     private final int startTropsEnergy;
     private final int tropsFullEnergy;
     private final int supportTropsEnergy;
-    private final int tropsLegacyLength;
-    //10 godzin do matury
+    private final int troopsOverViewLength;
     private final AbstractFieldMap map;
     private final IMove troopMoving;
-    private final ITroopProperty propertyVariant; //ITroopPropert = IGenome
+    private final ITroopOverview developmentVariant;
 
     public Settings(String configName, String[] config) throws Exception {
         name = configName;
         fieldWidth = Integer.parseInt(config[0]);
         fieldHeight = Integer.parseInt(config[1]);
         startTrenchQuantity = Integer.parseInt(config[2]);
-        startTrenchQuality = Integer.parseInt(config[3]);   //eating grass energy
+        recoveryTrenchEnergy = Integer.parseInt(config[3]);   //eating grass energy
         trenchPerDay = Integer.parseInt(config[4]);
         startTropsQuantity = Integer.parseInt(config[5]);
         startTropsEnergy = Integer.parseInt(config[6]);
@@ -30,7 +29,9 @@ public class Settings {
         supportTropsEnergy = Integer.parseInt(config[8]);
         int minimalTroopsChanges = Integer.parseInt(config[9]); //TODO
         int maximalTroopsChanges = Integer.parseInt(config[10]); //TODO
-        tropsLegacyLength = Integer.parseInt(config[11]); //associated directly with overview
+        troopsOverViewLength = Integer.parseInt(config[11]); //associated directly with overview
+        IMoveAllowed movementDetails;
+
 
         if (fieldWidth <= 0 || fieldHeight <= 0) {
             throw new Exception("wrong field dimension data");
@@ -40,7 +41,7 @@ public class Settings {
             throw new Exception("wrong startTrenchQuantity data");
         }
 
-        if (startTrenchQuality < 0) {
+        if (recoveryTrenchEnergy < 0) {
             throw new Exception("wrong startTrenchQuality data");
         }
 
@@ -54,13 +55,33 @@ public class Settings {
         if (tropsFullEnergy < 0 || supportTropsEnergy < 0) {
             throw new Exception("wrong troopsEnergy data");
         }
-        if (minimalTroopsChanges < 0 || minimalTroopsChanges > maximalTroopsChanges || tropsLegacyLength <= 0) {
+        if (minimalTroopsChanges < 0 || minimalTroopsChanges > maximalTroopsChanges || troopsOverViewLength <= 0) {
             throw new Exception("wrong troops changes and legacy data");
         }
 
         switch (config[12]){
-            case "Position war" -> troopMoving = new PositionMove;
+            case "Position war" -> troopMoving = new PositionWarMove();
+            case "Total war" -> troopMoving = new TotalWarMove();
+            default ->  throw new Exception("wrong troopMoving data");
         }
+        switch (config[13]) {
+            case "Correction" -> developmentVariant = new LittleCorrectionProperties();
+            case "Random" -> developmentVariant = new FullRandomProperties();
+            default -> throw new Exception("wrong developmentVariant data");
+        }
+
+        switch (config[14]) {
+            case "Only earth's surface" -> movementDetails = new OnlySurfaceMoveAllowed();
+            case "Surface and Underground" -> movementDetails = new UndergroundMoveAllowed();
+            default ->  throw new Exception("Wrong movementsDetails data");
+        }
+
+        switch (config[15]) {
+            case "Geographic map" -> map = new GeographicMap(fieldWidth, fieldHeight, movementDetails, supportTropsEnergy);
+            case "Corpses map" -> map = new CorpsesMap(fieldWidth, fieldHeight, movementDetails, supportTropsEnergy);
+            default -> throw new Exception("wrong map data");
+        }
+
     }
 
     public AbstractFieldMap getMap(){
@@ -81,6 +102,10 @@ public class Settings {
 
     public int getTropsLegacyLength() {
         return tropsLegacyLength;
+    }
+
+    public int ITroopOverview getDevelopmentVariant {
+        return developmentVariant;
     }
 
 }

@@ -54,7 +54,9 @@ public class Troop implements IMapElement {
             orientation = orientation.next();
         }
         Vector2D oldPosition = position;
-        //TODO Vector2D newPosition = map. //firstly finish AbstarctFieldMap.java
+        Vector2D newPosition = map.newPosition(oldPosition, oldPosition.add(getOrientation().toUnitVector())); //firstly finish AbstarctFieldMap.java
+        loseEnergy(map.moveEnergyLost(newPosition));
+        setPosition(newPosition);
     }
 
     public void move() {
@@ -66,8 +68,8 @@ public class Troop implements IMapElement {
         }
     }
 
-    public void loseEnergy() {
-        energy += settings.getStartTropsEnergy();
+    public void loseEnergy(int energy) {
+        this.energy -= energy;
     }
 
     public void increaseEnergy() {
@@ -104,22 +106,19 @@ public class Troop implements IMapElement {
 
 //TODO within TroopOverview.java
 
-//    public void newChildren() {
-//        children += 1;
-//    }
-//
+
     public int[] getOverviewID() {
         return troopOverviewID.getTroopOverviewID();
     }
-//
-//    public int getActiveGenome() {
-//        return genotype.getActiveGenomeAnimal();
-//    }
-//
-//    public void setActiveGenomeIdx(int currGen) {
-//        genotype.setActiveGenome(currGen);
-//    }
-//
+
+    public int getMainFeature() {
+        return troopOverviewID.getMainFeatureTroop();
+    }
+
+    public void setMainFeatureID(int currentFeature) {
+        troopOverviewID.setMainFeature(currentFeature);
+    }
+
     public int getMainFeatureID() {
         return troopOverviewID.getMainFeatureID();
     }
