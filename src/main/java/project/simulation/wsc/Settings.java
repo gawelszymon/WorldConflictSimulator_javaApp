@@ -26,7 +26,7 @@ public class Settings {
         startTropsQuantity = Integer.parseInt(config[5]);
         startTropsEnergy = Integer.parseInt(config[6]);
         tropsFullEnergy = Integer.parseInt(config[7]);
-        supportTropsEnergy = Integer.parseInt(config[8]);
+        supportTropsEnergy = Integer.parseInt(config[8]);       //energy lost to get a support
         int minimalTroopsChanges = Integer.parseInt(config[9]); //TODO
         int maximalTroopsChanges = Integer.parseInt(config[10]); //TODO
         troopsOverViewLength = Integer.parseInt(config[11]); //associated directly with overview
@@ -108,7 +108,7 @@ public class Settings {
         return trenchPerDay;
     }
 
-    public int getSupportTropsEnergy() {
+    public int getEnergyLost() {
         return supportTropsEnergy;
     }
 

@@ -41,8 +41,8 @@ public class Troop implements IMapElement {
         troopOverviewID = new TroopOverview(firstTroop, secondTroop, settings);
         map.place(this);
 
-        //firstTroop.loseEnergy(settings.getStartTropsEnergy());
-        //secondTroop.loseEnergy(settings.getStartTropsEnergy());//TODO here we hava to find another way to replace two troop with one extra troop
+        firstTroop.loseEnergy(settings.getEnergyLost());
+        secondTroop.loseEnergy(settings.getEnergyLost());//DONE here we hava to find another way to replace two troop with one extra troop
 
         energy = settings.getStartTropsEnergy();
 
