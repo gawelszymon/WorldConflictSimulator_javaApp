@@ -157,11 +157,6 @@ public class Troop implements IMapElement {
         this.observer = observer;
     }
 
-    @Override
-    public int getActiveTroopID() {
-        return 0;
-    }
-
     public int getAmountOfTrenchDamaged() {
         return amountOfTrenchDamaged;
     }

@@ -6,5 +6,5 @@ public interface IMapElement {
     MoveDirection getOrientation();
     int getImageID();
     void setObserver(IElementChangeObserver observer);
-    int getActiveTroopID();
+    int getMainFeatureID();
 }

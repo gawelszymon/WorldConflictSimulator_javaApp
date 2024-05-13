@@ -5,6 +5,6 @@ package project.simulation.wsc;
 public class PositionWarMove implements IMove {
     @Override
     public void moving(Troop troop) {
-        //TODO
+        troop.setMainFeatureID((troop.getMainFeatureID() + 1) % troop.getOverviewID().length);
     }
 }

@@ -1,8 +1,5 @@
 package project.simulation.wsc;
 
-//TODO
-
-import java.util.Collection;
 import java.util.Collections;
 
 public class CorpsesMap extends AbstractFieldMap {
