@@ -20,7 +20,7 @@ abstract public class AbstractFieldMap implements IFieldMap, IElementChangeObser
     protected  List<Vector2D> emptyNotPreferred;
     protected final ArrayList<Troop> troopsList = new ArrayList<>();
 
-    //test12
+
 
 
     protected AbstractFieldMap(int width, int height, IMoveAllowed movementDetails, int extraTroopsEnergy) {
