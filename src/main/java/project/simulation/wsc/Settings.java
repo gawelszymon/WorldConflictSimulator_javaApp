@@ -1,136 +1,144 @@
 package project.simulation.wsc;
-/*
+
 public class Settings {
     private final String name;
     private final int fieldWidth;
     private final int fieldHeight;
     private final int startTrenchQuantity;
-    private final int startTrenchQuality;
+    private final int recoveryTrenchEnergy; //TODO change into recoveryTrenchEnergy
     private final int trenchPerDay;
     private final int startTropsQuantity;
     private final int startTropsEnergy;
     private final int tropsFullEnergy;
     private final int supportTropsEnergy;
-    private final int tropsLegacyLength;
-//10 godzin do matury
-    private final AbstractWorldMap map;
-    private final IMove animalMoving;
-    private final IGenome mutationVariant;
+    private final int troopsOverViewLength;
+    private final AbstractFieldMap map;
+    private final IMove troopMoving;
+    private final ITroopOverview developmentVariant;
 
     public Settings(String configName, String[] config) throws Exception {
         name = configName;
-        mapWidth = Integer.parseInt(config[0]);
-        mapHeight = Integer.parseInt(config[1]);
-        startGrassQuantity = Integer.parseInt(config[2]);
-        eatingGrassEnergy = Integer.parseInt(config[3]);
-        grassPerDay = Integer.parseInt(config[4]);
-        startAnimalsQuantity = Integer.parseInt(config[5]);
-        startAnimalEnergy = Integer.parseInt(config[6]);
-        animalFullEnergy = Integer.parseInt(config[7]);
-        reproductionLostEnergy = Integer.parseInt(config[8]);
-        int minimalMutationNumber = Integer.parseInt(config[9]);
-        int maximalMutationNumber = Integer.parseInt(config[10]);
-        genLength = Integer.parseInt(config[11]);
+        fieldWidth = Integer.parseInt(config[0]);
+        fieldHeight = Integer.parseInt(config[1]);
+        startTrenchQuantity = Integer.parseInt(config[2]);
+        recoveryTrenchEnergy = Integer.parseInt(config[3]);   //eating grass energy
+        trenchPerDay = Integer.parseInt(config[4]);
+        startTropsQuantity = Integer.parseInt(config[5]);
+        startTropsEnergy = Integer.parseInt(config[6]);
+        tropsFullEnergy = Integer.parseInt(config[7]);
+        supportTropsEnergy = Integer.parseInt(config[8]);       //energy lost to get a support
+        int minimalTroopsChanges = Integer.parseInt(config[9]); //TODO
+        int maximalTroopsChanges = Integer.parseInt(config[10]); //TODO
+        troopsOverViewLength = Integer.parseInt(config[11]); //associated directly with overview
+        IMoveAllowed movementDetails;
 
-        if (mapWidth <= 0 || mapHeight <= 0) {
-            throw new Exception("wrong map dimension");
-        }
-        if (startGrassQuantity < 0 || startGrassQuantity > mapWidth * mapHeight) {
-            throw new Exception("wrong startGrassQuantity config");
-        }
-        if (eatingGrassEnergy < 0) {
-            throw new Exception("wrong eatingGrassEnergy config");
-        }
-        if (grassPerDay < 0) {
-            throw new Exception("wrong grassPerDay config");
-        }
-        if (startAnimalsQuantity <= 0 || startAnimalEnergy <= 0) {
-            throw new Exception("wrong animal start config");
-        }
-        if (animalFullEnergy < 0 || reproductionLostEnergy < 0) {
-            throw new Exception("wrong reproductionLostEnergy/animalFullEnergy config");
-        }
-        if (minimalMutationNumber < 0 || minimalMutationNumber > maximalMutationNumber || genLength <= 0) {
-            throw new Exception("wrong gen/mutation config");
+
+        if (fieldWidth <= 0 || fieldHeight <= 0) {
+            throw new Exception("wrong field dimension data");
         }
 
-        switch (config[12]) {
-            case "Predestination" -> animalMoving = new FullPredestinationMove();
-            case "Craziness" -> animalMoving = new LittleCrazinessMove();
-            default -> throw new Exception("wrong animalMoving configuration");
+        if (startTrenchQuantity < 0 || startTrenchQuantity > fieldWidth * fieldHeight) {
+            throw new Exception("wrong startTrenchQuantity data");
+        }
+
+        if (recoveryTrenchEnergy < 0) {
+            throw new Exception("wrong startTrenchQuality data");
+        }
+
+        if (trenchPerDay < 0) {
+            throw new Exception("wrong trenchPerDay data");
+        }
+
+        if (startTropsQuantity <= 0 || startTropsEnergy <= 0) {
+            throw new Exception("wrong startTrops data");
+        }
+        if (tropsFullEnergy < 0 || supportTropsEnergy < 0) {
+            throw new Exception("wrong troopsEnergy data");
+        }
+        if (minimalTroopsChanges < 0 || minimalTroopsChanges > maximalTroopsChanges || troopsOverViewLength <= 0) {
+            throw new Exception("wrong troops changes and legacy data");
+        }
+
+        switch (config[12]){
+            case "Position war" -> troopMoving = new PositionWarMove();
+            case "Total war" -> troopMoving = new TotalWarMove();
+            default ->  throw new Exception("wrong troopMoving data");
         }
         switch (config[13]) {
-            case "Correction" -> mutationVariant = new LittleCorrectionGens();
-            case "Random" -> mutationVariant = new FullRandomGens(maximalMutationNumber, minimalMutationNumber);
-            default -> throw new Exception("wrong mutationVariant configuration");
+            case "Correction" -> developmentVariant = new LittleCorrectionProperties();
+            case "Random" -> developmentVariant = new FullRandomProperties();
+            default -> throw new Exception("wrong developmentVariant data");
         }
-        IMoveAllowed movementDetails;
+
         switch (config[14]) {
-            case "Earth" -> movementDetails = new EarthMoveAllowed();
-            case "Portal" -> movementDetails = new PortalMoveAllowed();
-            default -> throw new Exception("wrong movementDetails configuration");
+            case "Only earth's surface" -> movementDetails = new OnlySurfaceMoveAllowed();
+            case "Surface and Underground" -> movementDetails = new UndergroundMoveAllowed();
+            default ->  throw new Exception("Wrong movementsDetails data");
         }
+
         switch (config[15]) {
-            case "Equators" -> map = new EquatorsMap(mapWidth, mapHeight, movementDetails, reproductionLostEnergy);
-            case "Corpses" -> map = new CorpsesMap(mapWidth, mapHeight, movementDetails, reproductionLostEnergy);
-            default -> throw new Exception("wrong map configuration");
+            case "Geographic map" -> map = new GeographicMap(fieldWidth, fieldHeight, movementDetails, supportTropsEnergy);
+            case "Corpses map" -> map = new CorpsesMap(fieldWidth, fieldHeight, movementDetails, supportTropsEnergy);
+            default -> throw new Exception("wrong map data");
         }
+
     }
 
     public String getName() {
         return name;
     }
 
-    public int getMapWidth() {
-        return mapWidth;
+    public int getFieldWidth() {
+        return fieldWidth;
     }
 
-    public int getMapHeight() {
-        return mapHeight;
+    public int getFieldHeight() {
+        return fieldHeight;
     }
 
-    public int getStartGrassQuantity() {
-        return startGrassQuantity;
+    public int getStartTrenchQuantity() {
+        return startTrenchQuantity;
     }
 
-    public int getEatingGrassEnergy() {
-        return eatingGrassEnergy;
+    public int getRecoveryTrenchEnergy() {
+        return recoveryTrenchEnergy;
     }
 
-    public int getGrassPerDay() {
-        return grassPerDay;
+    public int getTrenchPerDay() {
+        return trenchPerDay;
     }
 
-    public int getStartAnimalsQuantity() {
-        return startAnimalsQuantity;
+    public int getEnergyLost() {
+        return supportTropsEnergy;
     }
 
-    public int getStartAnimalEnergy() {
-        return startAnimalEnergy;
+    public int getStartTropsQuantity() {
+        return startTropsQuantity;
     }
 
-    public int getAnimalFullEnergy() {
-        return animalFullEnergy;
+    public int getTropsFullEnergy() {
+        return tropsFullEnergy;
     }
 
-    public int getReproductionLostEnergy() {
-        return reproductionLostEnergy;
-    }
-
-    public int getGenLength() {
-        return genLength;
-    }
-
-    public AbstractWorldMap getMap() {
+    public AbstractFieldMap getMap() {
         return map;
     }
 
-    public IMove getAnimalMoving() {
-        return animalMoving;
+    public int getStartTropsEnergy() {
+        return startTropsEnergy;
     }
 
-    public IGenome getMutationVariant() {
-        return mutationVariant;
+    public IMove getTroopMoving() {
+        return troopMoving;
     }
+
+    public int getTroopsOverViewLength() {
+        return troopsOverViewLength;
+    }
+
+    public ITroopOverview getDevelopmentVariant() {
+        return developmentVariant;
+    }
+
 }
-*/
+

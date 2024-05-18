@@ -1,1 +1,12 @@
-working on AbstractFieldMap
+working on: Troop, Settings, TroopProperty, IMove, ITroopProperty
+
+IMPORTANT: in Troop.java it's required to implement function changerPosition()
+
+Interface w java to abstrakcyjny typ danych, które mogą zawierać jedynie deklaracje metod i pól. Nie mogą zawierać
+implementacji tychże metod. Czyli w takim interfejsie możemy np. zdefiniować zachowanie danych obiektów, ale bez
+implementacji tego zachowania.
+
+Record is a special class in java which is intended mainly for data storage
+
+private final int   crucial word final mean that variable's value cannot be change and the value must be written during
+initialization or in class constructor.

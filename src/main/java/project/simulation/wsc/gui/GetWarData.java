@@ -42,8 +42,8 @@ public class GetWarData {
         TextField startTropsEnergy = new TextField("10");
         TextField tropsFullEnergy = new TextField("15");
         TextField supportTropsEnergy = new TextField("5");
-        TextField minimalTropsChanges = new TextField("2");
-        TextField maximalTropsChanges = new TextField("9");
+        TextField minimalTropsChanges = new TextField("2"); //TODO
+        TextField maximalTropsChanges = new TextField("9"); //TODO
         TextField tropsLegacyLength = new TextField("8");
         TextField trenchPerDay = new TextField("8");
 

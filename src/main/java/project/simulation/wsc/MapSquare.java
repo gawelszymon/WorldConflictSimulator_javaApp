@@ -14,7 +14,7 @@ public class MapSquare {
         this.deathCounter = 0;
     }
 
-    public boolean didTrenchGrow() {
+    public boolean didTrenchBuild() {
         return trench;
     }
 
@@ -34,7 +34,7 @@ public class MapSquare {
         return deathCounter;
     }
 
-    public List<IMapElement> getObject() {
+    public List<IMapElement> getObjects() {
         return objects;
     }
 
