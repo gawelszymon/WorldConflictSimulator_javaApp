@@ -42,7 +42,7 @@ public class StatisticReceiver {
         String headers = "war day,troops quantity,trenches quantity,dead troops quantity,avg support quantity," +
                 "avg life length,avg energy level,free space quantity,mian feature\n";
         writer.write(headers);
-        writer.flush(); //it's really important, because it ensures us that any data, which is currently in buffer, will be actually write out of the file as soon as possible in the disk, buffering is really positive occurrence - it provide reducing of disk writers, which are relatively slow
+        writer.flush(); //it's really important, because it ensures us that any data, which is currently in buffer will be actually write out of the file as soon as possible in the disk, buffering is really positive occurrence - it provide reducing of disk writers, which are relatively slow
         writer.close();
     }
 
