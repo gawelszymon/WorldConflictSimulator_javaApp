@@ -6,6 +6,7 @@ import java.util.*;
 //enable a pattern for classes inherited by it (methods and fields are in inherited classes)
 abstract public class AbstractFieldMap implements IFieldMap, IElementChangeObserver {
     protected final Map<Vector2D, MapSquare> elements;
-        //test11
+
+    //test12
 
 }
