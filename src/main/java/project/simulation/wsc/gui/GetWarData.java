@@ -197,6 +197,7 @@ public class GetWarData {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            stage.close();
         });
     }
 }
