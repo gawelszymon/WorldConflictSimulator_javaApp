@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 import project.simulation.wsc.ConfigurateSelection;
+import project.simulation.wsc.Settings;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -170,8 +171,32 @@ public class GetWarData {
             textFieldsValues[13] = tropsMoving.getValue();
             textFieldsValues[14] = developmentVariant.getValue();
             textFieldsValues[15] = fieldVariant.getValue();
-            //100 dni do matury bejbe co ma byc to bedzie
-            //Settings parameters;  //is required to create new class
+
+            Settings parameter;  //is required to create new class
+
+            try {
+                parameter = new Settings(configName, textFieldsValues);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("error");
+                alert.setHeaderText("WRONG INPUT DATA");
+                alert.setContentText("Check and repair your settings and then try again");
+                alert.showAndWait();
+
+                throw new RuntimeException(e);
+            }
+
+            try {
+                ConfigurateSelection.add(configName, textFieldsValues);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                new LaunchApp(parameter);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }
