@@ -65,6 +65,19 @@ public class App extends Application {
                 String items = confVariant.getValue();
                 if (items.equals("configuration")) {
                     new GetWarData();
+                } else {
+                    String[] headers = ConfigurateSelection.names();
+                    for (String name : headers) {
+                        if (items.equals(name)) {
+                            String[] parameters = ConfigurateSelection.find(name);
+                            if (parameters != null) {
+                                Settings settings = new Settings(name, parameters);
+                                new LaunchApp(settings);
+                            } else {
+                                throw new Exception("wrong data configuration");
+                            }
+                        }
+                    }
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);

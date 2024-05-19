@@ -172,7 +172,7 @@ public class GetWarData {
             textFieldsValues[14] = developmentVariant.getValue();
             textFieldsValues[15] = fieldVariant.getValue();
 
-            Settings parameter;  //is required to create new class
+            Settings parameter;
 
             try {
                 parameter = new Settings(configName, textFieldsValues);
