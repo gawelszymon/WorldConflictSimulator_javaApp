@@ -10,7 +10,7 @@ public class TroopOverview { //Genome
     private int mainFeatureID;
 
     public TroopOverview(Settings settings) {
-        int troopOverviewLength = settings.getTroopsOverViewLength();
+        int troopOverviewLength = settings.getTroopsOverviewLength();
         troopOverviewID = new int[troopOverviewLength];
         for (int i = 0; i < troopOverviewLength; i++) {
             troopOverviewID[i] = random.nextInt(7) + 1;

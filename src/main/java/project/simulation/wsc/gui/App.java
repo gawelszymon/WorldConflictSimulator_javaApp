@@ -40,9 +40,9 @@ public class App extends Application {
 
     private void initGetDate() throws FileNotFoundException {
         ChoiceBox<String> confVariant = new ChoiceBox<>();
-        confVariant.getItems().add("configuration");
+        confVariant.getItems().add("New configuration");
         confVariant.getItems().addAll(ConfigurateSelection.names());
-        confVariant.setValue("configuration");
+        confVariant.setValue("New configuration");
 
         Button confirmButton = new Button("Confirm");
         Button exButton = new Button("Exit");
@@ -63,7 +63,7 @@ public class App extends Application {
         confirmButton.setOnAction(action -> {
             try {
                 String items = confVariant.getValue();
-                if (items.equals("configuration")) {
+                if (items.equals("New configuration")) {
                     new GetWarData();
                 } else {
                     String[] headers = ConfigurateSelection.names();

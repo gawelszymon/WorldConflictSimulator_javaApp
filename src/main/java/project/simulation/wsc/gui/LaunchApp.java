@@ -47,7 +47,7 @@ public class LaunchApp {
         stage.setHeight(screenBounds.getHeight());
         stage.setScene(sceneMain);
         stage.show();
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/world.png")));
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/field.png")));
         stage.setTitle("War's force of damage");
 
         Label tittle = new Label("War which does not have proper respect to existing");
