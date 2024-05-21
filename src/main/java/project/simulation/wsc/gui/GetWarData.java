@@ -62,13 +62,7 @@ public class GetWarData {
 
         Button parametersConfirmation = new Button("Confirm");
 
-        VBox listedFieldsLeft = new VBox(30);
-        listedFieldsLeft.getChildren().addAll(name, fieldWidth, fieldHeight, startTrenchQuantity, trenchRecoveryEnergy,
-                startTropsQuantity, startTropsEnergy, tropsFullEnergy);
 
-        VBox listedFieldsRight = new VBox(30);
-        listedFieldsRight.getChildren().addAll(supportTropsEnergy, minimalTropsChanges, maximalTropsChanges,
-                tropsLegacyLength, trenchPerDay, movementDetails, tropsMoving, developmentVariant, fieldVariant);
 
         Label namelabel = new Label("Conf name");
         Label fieldWidthlabel = new Label("Field width");
@@ -88,18 +82,23 @@ public class GetWarData {
         Label developmentVariantlabel = new Label("Development Variants");
         Label fieldVariantlabel = new Label("Field Variants");
 
-        VBox leftLabelsList = new VBox(30);
-        VBox rightLabelsList = new VBox(30);
+        VBox leftList = new VBox(10);
+        VBox mediumList = new VBox(10);
+        VBox rightList = new VBox(10);
 
-        leftLabelsList.getChildren().addAll(namelabel, fieldWidthlabel, fieldHeightlabel, startTrenchQuantitylabel,
-                startTrenchQualitylabel, startTropsQuantitylabel, startTropsEnergylabel, tropsFullEnergylabel);
+        leftList.getChildren().addAll(namelabel, name, fieldWidthlabel, fieldWidth, fieldHeightlabel, fieldHeight,
+                startTrenchQuantitylabel, startTrenchQuantity, startTrenchQualitylabel, trenchRecoveryEnergy,
+                startTropsQuantitylabel, startTropsQuantity);
 
-        rightLabelsList.getChildren().addAll(supportTropsEnergylabel, minimalTropsChangeslabel,
-                maximalTropsChangeslabel, tropsLegacyLengthlabel, trenchPerDaylabel, movementDetailslabel,
-                tropsMovinglabel, developmentVariantlabel, fieldVariantlabel);
+        mediumList.getChildren().addAll(startTropsEnergylabel, startTropsEnergy, tropsFullEnergylabel, tropsFullEnergy,
+                supportTropsEnergylabel, supportTropsEnergy, minimalTropsChangeslabel, minimalTropsChanges,
+                maximalTropsChangeslabel, maximalTropsChanges, tropsLegacyLengthlabel, tropsLegacyLength);
 
-        HBox inputList = new HBox(10);
-        inputList.getChildren().addAll(leftLabelsList, rightLabelsList, listedFieldsLeft, listedFieldsRight);
+        rightList.getChildren().addAll(trenchPerDaylabel, trenchPerDay, movementDetailslabel, movementDetails,
+                tropsMovinglabel, tropsMoving, developmentVariantlabel, developmentVariant, fieldVariantlabel, fieldVariant);
+
+        HBox inputList = new HBox(80);
+        inputList.getChildren().addAll(leftList, mediumList, rightList);
         inputList.setAlignment(Pos.TOP_CENTER);
 
         VBox confirmation = new VBox(parametersConfirmation);
