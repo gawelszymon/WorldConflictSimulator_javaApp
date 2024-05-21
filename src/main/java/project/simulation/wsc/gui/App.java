@@ -45,14 +45,13 @@ public class App extends Application {
         confVariant.setValue("New configuration");
 
         Button confirmButton = new Button("Confirm");
-        Button exButton = new Button("Exit");
 
         Label choiceLabel = new Label("Chosen label" );
 
         HBox inputList = new HBox(10, choiceLabel, confVariant);
         inputList.setAlignment(Pos.CENTER);
 
-        HBox confirmation = new HBox(50, confirmButton, exButton);
+        HBox confirmation = new HBox(50, confirmButton);
         BorderPane.setMargin(confirmation, new Insets(10, 0, 60, 0));
 
         border.setCenter(inputList);

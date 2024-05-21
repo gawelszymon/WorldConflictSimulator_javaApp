@@ -75,7 +75,7 @@ public class Settings {
         }
         switch (config[14]) {
             case "Correction" -> developmentVariant = new LittleCorrectionProperties();
-            case "Random" -> developmentVariant = new FullRandomProperties();
+            case "Random" -> developmentVariant = new FullRandomProperties(maximalOverviewChanges, minimalOverviewChanges);
             default -> throw new Exception("wrong developmentVariant data");
         }
 
