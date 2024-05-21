@@ -62,11 +62,11 @@ public class GetWarData {
 
         Button parametersConfirmation = new Button("Confirm");
 
-        VBox listedFieldsLeft = new VBox(10);
+        VBox listedFieldsLeft = new VBox(30);
         listedFieldsLeft.getChildren().addAll(name, fieldWidth, fieldHeight, startTrenchQuantity, trenchRecoveryEnergy,
                 startTropsQuantity, startTropsEnergy, tropsFullEnergy);
 
-        VBox listedFieldsRight = new VBox(10);
+        VBox listedFieldsRight = new VBox(30);
         listedFieldsRight.getChildren().addAll(supportTropsEnergy, minimalTropsChanges, maximalTropsChanges,
                 tropsLegacyLength, trenchPerDay, movementDetails, tropsMoving, developmentVariant, fieldVariant);
 
@@ -88,8 +88,8 @@ public class GetWarData {
         Label developmentVariantlabel = new Label("Development Variants");
         Label fieldVariantlabel = new Label("Field Variants");
 
-        VBox leftLabelsList = new VBox(18);
-        VBox rightLabelsList = new VBox(18);
+        VBox leftLabelsList = new VBox(30);
+        VBox rightLabelsList = new VBox(30);
 
         leftLabelsList.getChildren().addAll(namelabel, fieldWidthlabel, fieldHeightlabel, startTrenchQuantitylabel,
                 startTrenchQualitylabel, startTropsQuantitylabel, startTropsEnergylabel, tropsFullEnergylabel);
@@ -104,7 +104,7 @@ public class GetWarData {
 
         VBox confirmation = new VBox(parametersConfirmation);
         VBox.setVgrow(parametersConfirmation, Priority.ALWAYS);
-        VBox.setMargin(parametersConfirmation, new Insets(60, 0, 200, 0));
+        VBox.setMargin(parametersConfirmation, new Insets(60, 0, 100, 0));
         confirmation.setAlignment(Pos.TOP_CENTER);
 
         borderPane.setCenter(inputList);
