@@ -124,7 +124,7 @@ public class LaunchApp {
 
             stat.setOnMouseClicked(event -> charts.chartsShow());
 
-            newField.createField();
+            newField.create();
             GridPane gridPane = newField.getGridPane();
             gridPane.setGridLinesVisible(true);
 
@@ -188,30 +188,6 @@ public class LaunchApp {
         if (followingTroop != null) {
             boxAboutTroops.creativeInfo(followingTroop); //TODO
         }
-    }
-
-    public void uploadMap() {
-        Platform.runLater(() -> {
-            charts.updateCharts(); //TODO
-
-            VBox stat = uploadStats();
-            stat.setAlignment(Pos.CENTER);
-            stat.setMaxHeight(stage.getHeight() / 1.5);
-            stat.setStyle("-fx-background-color: rgba(8,56,65,0.84);");
-
-            stat.setOnMouseClicked(event -> charts.chartsShow()); //TODO
-
-            newField.createField(); //TODO
-            GridPane gridPane = newField.getGridPane(); //TODO
-            gridPane.setGridLinesVisible(true);
-
-            HBox hbox = new HBox(10);
-            hbox.getChildren().addAll(gridPane, stat);
-            hbox.setAlignment(Pos.CENTER);
-
-            updateInfo();
-            borderPane.setCenter(hbox);
-        });
     }
 
     public int getMainFeature() {
