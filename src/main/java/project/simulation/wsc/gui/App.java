@@ -29,6 +29,7 @@ public class App extends Application {
         primaryStage.setScene(new Scene(border, 880, 460));
         primaryStage.show();
     }
+    //Method initializing
 
     private void initBorder() {
         Label tittle = new Label("Choose war's assumptions");
@@ -43,7 +44,7 @@ public class App extends Application {
         confVariant.getItems().add("New configuration");
         confVariant.getItems().addAll(ConfigurateSelection.names());
         confVariant.setValue("New configuration");
-
+        //Initializing the Buttons
         Button confirmButton = new Button("Confirm");
         Button exButton = new Button("Exit");
 
