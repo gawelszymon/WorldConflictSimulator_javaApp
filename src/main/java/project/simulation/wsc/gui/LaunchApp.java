@@ -43,8 +43,9 @@ public class LaunchApp {
         this.borderPane = new BorderPane();
         this.boxAboutTroops = new InfoElement(stage, this);
 
-        Scene sceneMain = new Scene(borderPane, 880, 550);
+        Scene sceneMain = new Scene(borderPane, 1200, 700);
         this.stage.setResizable(false);
+        sceneMain.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
         //Rectlange2D is class which define a rectangle on a plane associated with screen's of my laptop
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -56,19 +57,14 @@ public class LaunchApp {
         stage.setWidth(880);
         stage.setHeight(550);
 
-        Label tittle = new Label("War which does not have proper respect to existing");
-        borderPane.setTop(tittle); //TODO
-        BorderPane.setAlignment(tittle, Pos.CENTER);
-        BorderPane.setMargin(tittle, new Insets(20, 0, 20, 0));
-
-        Image backgroundImage = new Image(new FileInputStream("src/main/resources/background_photo.png"));
+        Image backgroundImage = new Image(new FileInputStream("src/main/resources/war_field.png"));
         BackgroundImage background = new BackgroundImage(backgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         borderPane.setBackground(new Background(background));
 
         engine = new SimulationEngine(parameters);
-        this.charts = new ChartsViewer(stage, engine);      //TODO
+        this.charts = new ChartsViewer(engine);      //TODO
         this.newField = new FieldCreate(engine, stage, this);       //TODO
 
         new Controller(engine, this);       //REVIEW
@@ -100,6 +96,7 @@ public class LaunchApp {
 //                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 //        borderPane.setBackground(new Background(background));
 
+        startButton.getStyleClass().add("confirm-button");
         startButton.setOnAction(actionEvent -> {
             engine.changeStatus();
             engineThread.start();
@@ -113,11 +110,13 @@ public class LaunchApp {
 
         HBox centerButtons = new HBox(exitButton, buttonEndTracking);
         centerButtons.setSpacing(15);
+        exitButton.getStyleClass().add("confirm-button");
         exitButton.setOnAction(action -> {
             engineThread.interrupt();
             stage.close();
         });
         buttonEndTracking.setOnAction(action -> engine.changeStatus());
+        buttonEndTracking.getStyleClass().add("confirm-button");
 
         buttons.getChildren().addAll(centerButtons);
         buttons.setAlignment(Pos.CENTER);
@@ -175,6 +174,8 @@ public class LaunchApp {
 
 
         Label title = new Label("Field Statistic");
+        title.getStyleClass().add("choiceLabel");
+        statsVBox.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
         Label warDays = new Label("War's day: " + statsCounter.getWarDays());
 

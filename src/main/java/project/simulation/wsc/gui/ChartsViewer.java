@@ -28,19 +28,21 @@ public class ChartsViewer {
     private final StatisticChart deathTroopsChart = new StatisticChart("Death troops");
 
 
-    public ChartsViewer(Stage mainStage, SimulationEngine engine) throws FileNotFoundException {
+    public ChartsViewer(SimulationEngine engine) throws FileNotFoundException {
         this.engine = engine;
         this.borderPane = new BorderPane();
         Scene scene = new Scene(borderPane, 800, 800);
         this.stage = new Stage();
         stage.setScene(scene);
-        stage.initOwner(mainStage);
         stage.setTitle("Charts");
         stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
+
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
         stage.setOnCloseRequest(event -> this.stage.hide());
 
         Label title = new Label("Simulation Charts");
+        title.getStyleClass().add("choiceLabel");
 
         HBox mainDescription = new HBox(10, title);
         mainDescription.setAlignment(Pos.CENTER);
