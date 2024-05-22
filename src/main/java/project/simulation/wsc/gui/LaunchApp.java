@@ -44,21 +44,28 @@ public class LaunchApp {
         this.boxAboutTroops = new InfoElement(stage, this);
 
         Scene sceneMain = new Scene(borderPane, 880, 550);
+        this.stage.setResizable(false);
 
         //Rectlange2D is class which define a rectangle on a plane associated with screen's of my laptop
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setWidth(screenBounds.getWidth());
-        stage.setHeight(screenBounds.getHeight());
         stage.setScene(sceneMain);
         stage.show();
         stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
         stage.setTitle("Simulation");
         //stage.setScene(new Scene(borderPane, 880, 550));
+        stage.setWidth(880);
+        stage.setHeight(550);
 
         Label tittle = new Label("War which does not have proper respect to existing");
         borderPane.setTop(tittle); //TODO
         BorderPane.setAlignment(tittle, Pos.CENTER);
         BorderPane.setMargin(tittle, new Insets(20, 0, 20, 0));
+
+        Image backgroundImage = new Image(new FileInputStream("src/main/resources/background_photo.png"));
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        borderPane.setBackground(new Background(background));
 
         engine = new SimulationEngine(parameters);
         this.charts = new ChartsViewer(stage, engine);      //TODO

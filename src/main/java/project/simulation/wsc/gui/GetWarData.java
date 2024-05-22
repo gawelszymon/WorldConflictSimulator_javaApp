@@ -20,15 +20,22 @@ public class GetWarData {
     private final BorderPane borderPane;
     private final Stage stage;
 
-    public GetWarData(BorderPane existingPane, Stage existingStage) {
+    public GetWarData(BorderPane existingPane, Stage existingStage) throws FileNotFoundException {
         this.borderPane = existingPane;
         this.stage = existingStage;
 
         Label title = new Label("Enter conflict's details");
+        title.getStyleClass().add("choiceLabel");
         //title.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 22pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
         borderPane.setTop(title);
         BorderPane.setAlignment(title, Pos.CENTER);
         BorderPane.setMargin(title, new Insets(20, 0, 20, 0));
+
+        Image backgroundImage = new Image(new FileInputStream("src/main/resources/background_photo.png"));
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        borderPane.setBackground(new Background(background));
 
         initWarData();
     }

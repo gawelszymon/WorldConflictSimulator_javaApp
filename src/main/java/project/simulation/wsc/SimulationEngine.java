@@ -165,7 +165,6 @@ public class SimulationEngine implements Runnable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Simulation initialization...");
             initSimulation();
             viewer.SimulationStep();
         }

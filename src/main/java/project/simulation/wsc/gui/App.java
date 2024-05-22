@@ -39,16 +39,11 @@ public class App extends Application {
         primaryStage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
         primaryStage.setTitle("WCS initialization");
         primaryStage.alwaysOnTopProperty();
-        primaryStage.setScene(new Scene(border, 880, 550));
+        Scene scene = new Scene(border, 880, 550);
+        primaryStage.setResizable(false);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    private void initBorder() {
-        Label tittle = new Label("Choose war's assumptions");
-        //tittle.setStyle();
-        border.setTop(tittle);
-        BorderPane.setAlignment(tittle, Pos.CENTER);
-        BorderPane.setMargin(tittle, new Insets(20, 0, 20, 0));
     }
 
     private void initGetDate() throws IOException {
@@ -58,8 +53,10 @@ public class App extends Application {
         confVariant.setValue("new configuration");
 
         Button confirmButton = new Button("Confirm");
+        confirmButton.getStyleClass().add("confirm-button");
 
-        Label choiceLabel = new Label("Chosen label" );
+        Label choiceLabel = new Label("Choose war's assumptions" );
+        choiceLabel.getStyleClass().add("choiceLabel");
 
         HBox inputList = new HBox(10, choiceLabel, confVariant);
         inputList.setAlignment(Pos.CENTER);
@@ -101,7 +98,6 @@ public class App extends Application {
 
     @Override
     public void init() throws IOException {
-        initBorder();
         initGetDate();
     }
 }
