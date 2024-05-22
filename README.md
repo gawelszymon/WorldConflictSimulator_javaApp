@@ -31,11 +31,11 @@
 </ul>
 
 <h2 id="installation">Installation</h2>
-<p>To install and run the World Conflict Simulator, download directory from this repository and use it on your IDE or follow these steps:</p>
+<p>To install and run the World Conflict Simulator, download the directory from this repository and use it on your IDE or follow these steps:</p>
 <ol>
     <li>Ensure you have <a href="https://maven.apache.org/">Maven</a> and <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Java Development Kit (JDK) 11</a> installed on your system.</li>
     <li>Clone the repository:</li>
-    <pre><code>git clone https://github.com/gawelszymon/WorldConflictSimulator_javaApp</code></pre>
+    <pre><code>git clone https://github.com/yourusername/world-conflict-simulator.git</code></pre>
     <li>Navigate to the project directory:</li>
     <pre><code>cd world-conflict-simulator</code></pre>
     <li>Build the project using Maven:</li>
@@ -53,6 +53,13 @@
     <li>Analyze the results using the built-in statistical tools.</li>
 </ol>
 
+<h2>Screenshots</h2>
+<p>Here are some screenshots of the World Conflict Simulator in action:</p>
+<img src="screenshots/s1.png" alt="Screenshot 1">
+<img src="screenshots/s2.png" alt="Screenshot 2">
+<img src="screenshots/s3.png" alt="Screenshot 3">
+<img src="screenshots/s4.png" alt="Screenshot 4">
+
 <h2 id="contributing">Contributing</h2>
 <p>If you wish to contribute to the project, please follow these guidelines:</p>
 <ol>
@@ -65,5 +72,9 @@
     <pre><code>git push origin feature-name</code></pre>
     <li>Create a pull request on GitHub.</li>
 </ol>
+
+<h2 id="license">License</h2>
+<p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.</p>
+
 </body>
 </html>
