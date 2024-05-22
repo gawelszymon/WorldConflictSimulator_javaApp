@@ -43,7 +43,7 @@ public class LaunchApp {
         this.borderPane = new BorderPane();
         this.boxAboutTroops = new InfoElement(stage, this);
 
-        Scene sceneMain = new Scene(borderPane);
+        Scene sceneMain = new Scene(borderPane, 880, 550);
 
         //Rectlange2D is class which define a rectangle on a plane associated with screen's of my laptop
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -53,6 +53,7 @@ public class LaunchApp {
         stage.show();
         stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
         stage.setTitle("Simulation");
+        //stage.setScene(new Scene(borderPane, 880, 550));
 
         Label tittle = new Label("War which does not have proper respect to existing");
         borderPane.setTop(tittle); //TODO
@@ -83,8 +84,14 @@ public class LaunchApp {
         startApp();
     }
 
-    private void startApp() {
+    private void startApp() throws FileNotFoundException {
         borderPane.setCenter(startButton);
+
+//        Image backgroundImage = new Image(new FileInputStream("src/main/resources/background_photo.png"));
+//        BackgroundImage background = new BackgroundImage(backgroundImage,
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+//                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+//        borderPane.setBackground(new Background(background));
 
         startButton.setOnAction(actionEvent -> {
             engine.changeStatus();

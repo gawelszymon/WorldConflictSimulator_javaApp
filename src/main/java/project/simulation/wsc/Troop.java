@@ -9,7 +9,7 @@ public class Troop implements IMapElement {
     private IElementChangeObserver observer;
     private final AbstractFieldMap map;
     private int energy;
-    private int extraTroops = 0; //TODO
+    private int extraTroops; //TODO
     private int amountOfTrenchDamaged = 0;
     private final int createNewDay;
     private int lifeLength = 0;

@@ -1,6 +1,8 @@
 package project.simulation.wsc.gui;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import project.simulation.wsc.*;
@@ -27,6 +29,13 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+
+        Image backgroundImage = new Image(new FileInputStream("src/main/resources/background_photo.png"));
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        border.setBackground(new Background(background));
+
         primaryStage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
         primaryStage.setTitle("WCS initialization");
         primaryStage.alwaysOnTopProperty();
@@ -42,7 +51,7 @@ public class App extends Application {
         BorderPane.setMargin(tittle, new Insets(20, 0, 20, 0));
     }
 
-    private void initGetDate() throws FileNotFoundException {
+    private void initGetDate() throws IOException {
         ChoiceBox<String> confVariant = new ChoiceBox<>();
         confVariant.getItems().add("new configuration");
         confVariant.getItems().addAll(ConfigurateSelection.names());
