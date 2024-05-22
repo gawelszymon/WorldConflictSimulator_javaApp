@@ -55,12 +55,12 @@
 
 <h2>Screenshots</h2>
 <p>Here are some screenshots of the World Conflict Simulator in action:</p>
-<img src="screenshots/ss1.png" alt="Screenshot 1">
-<img src="screenshots/ss2.png" alt="Screenshot 2">
-<img src="screenshots/ss3.png" alt="Screenshot 3">
-<img src="screenshots/ss4.png" alt="Screenshot 4">
-<img src="screenshots/ss5.png" alt="Screenshot 5">
-<img src="screenshots/ss6.png" alt="Screenshot 6">
+<center></center><img src="screenshots/ss1.png" alt="Screenshot 1"></center>
+<center><img src="screenshots/ss2.png" alt="Screenshot 2"></center>center>
+<center><img src="screenshots/ss3.png" alt="Screenshot 3"></center>center>
+<center><img src="screenshots/ss4.png" alt="Screenshot 4"></center>center>
+<center><img src="screenshots/ss5.png" alt="Screenshot 5"></center>center>
+<center><img src="screenshots/ss7.png" alt="Screenshot 6"></center>center>
 
 <h2 id="contributing">Contributing</h2>
 <p>If you wish to contribute to the project, please follow these guidelines:</p>
