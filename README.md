@@ -31,7 +31,7 @@
 </ul>
 
 <h2 id="installation">Installation</h2>
-<p>To install and run the World Conflict Simulator, follow these steps:</p>
+<p>To install and run the World Conflict Simulator, download directory from this repository and use it on your IDE or follow these steps:</p>
 <ol>
     <li>Ensure you have <a href="https://maven.apache.org/">Maven</a> and <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Java Development Kit (JDK) 11</a> installed on your system.</li>
     <li>Clone the repository:</li>
