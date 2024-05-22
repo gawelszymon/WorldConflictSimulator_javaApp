@@ -65,6 +65,7 @@ public class GetWarData {
         fieldVariant.getItems().addAll("Geographic map", "Corpses map");
 
         Button parametersConfirmation = new Button("Confirm");
+        parametersConfirmation.getStyleClass().add("confirm-button");
 
 
 
