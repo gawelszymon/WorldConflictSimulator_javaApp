@@ -35,7 +35,7 @@
 <ol>
     <li>Ensure you have <a href="https://maven.apache.org/">Maven</a> and <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Java Development Kit (JDK) 11</a> installed on your system.</li>
     <li>Clone the repository:</li>
-    <pre><code>git clone https://github.com/yourusername/world-conflict-simulator.git</code></pre>
+    <pre><code>git clone https://github.com/gawelszymon/WorldConflictSimulator_javaApp</code></pre>
     <li>Navigate to the project directory:</li>
     <pre><code>cd world-conflict-simulator</code></pre>
     <li>Build the project using Maven:</li>
