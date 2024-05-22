@@ -10,104 +10,113 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 import project.simulation.wsc.ConfigurateSelection;
+import project.simulation.wsc.Settings;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class GetWarData {
 
+    private final BorderPane borderPane;
     private final Stage stage;
-    private final BorderPane borderPane = new BorderPane();
 
-    public GetWarData() throws FileNotFoundException {
-        this.stage = new Stage();
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
-        stage.setTitle("WCS simulation");
-        stage.setScene(new Scene(borderPane, 900, 500));
-        stage.show();
+    public GetWarData(BorderPane existingPane, Stage existingStage) throws FileNotFoundException {
+        this.borderPane = existingPane;
+        this.stage = existingStage;
 
-        Label title = new Label("Notice the danger caused by war...");
+        Label title = new Label("Enter conflict's details");
+        title.getStyleClass().add("choiceLabel");
+        //title.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 22pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
         borderPane.setTop(title);
         BorderPane.setAlignment(title, Pos.CENTER);
         BorderPane.setMargin(title, new Insets(20, 0, 20, 0));
+
+        Image backgroundImage = new Image(new FileInputStream("src/main/resources/background_photo.png"));
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        borderPane.setBackground(new Background(background));
+
+        initWarData();
     }
 
     private void initWarData() {
-        TextField name = new TextField("current war circumstances");
-        TextField fieldWidth = new TextField("20");
-        TextField fieldHeight = new TextField("15");
+        TextField name = new TextField("name");
+        TextField fieldWidth = new TextField("12");
+        TextField fieldHeight = new TextField("11");
         TextField startTrenchQuantity = new TextField("5");
-        TextField startTrenchQuality = new TextField("1");
-        TextField startTropsQuantity = new TextField("10");
-        TextField startTropsEnergy = new TextField("10");
-        TextField tropsFullEnergy = new TextField("15");
-        TextField supportTropsEnergy = new TextField("5");
-        TextField minimalTropsChanges = new TextField("2"); //TODO
-        TextField maximalTropsChanges = new TextField("9"); //TODO
-        TextField tropsLegacyLength = new TextField("8");
+        TextField trenchRecoveryEnergy = new TextField("1");
+        TextField startTropsQuantity = new TextField("8");
+        TextField startTropsEnergy = new TextField("15");
+        TextField tropsFullEnergy = new TextField("10");
+        TextField supportTropsEnergy = new TextField("15");
+        TextField minimalTropsChanges = new TextField("5"); //TODO
+        TextField maximalTropsChanges = new TextField("2"); //TODO
+        TextField tropsLegacyLength = new TextField("9");
         TextField trenchPerDay = new TextField("8");
 
         ChoiceBox<String> movementDetails = new ChoiceBox<>();
-        movementDetails.getItems().addAll("Erth", "Portal");
+        movementDetails.getItems().addAll("Only earth's surface", "Surface and Underground");
         ChoiceBox<String> tropsMoving = new ChoiceBox<>();
-        tropsMoving.getItems().addAll("Predestination", "Craziness");
+        tropsMoving.getItems().addAll("Position war", "Total war");
         ChoiceBox<String> developmentVariant = new ChoiceBox<>();
-        developmentVariant.getItems().addAll("Random", "Correction");
+        developmentVariant.getItems().addAll("Correction", "Random");
         ChoiceBox<String> fieldVariant = new ChoiceBox<>();
-        fieldVariant.getItems().addAll("Equators", "Corpses");
+        fieldVariant.getItems().addAll("Geographic map", "Corpses map");
 
         Button parametersConfirmation = new Button("Confirm");
 
-        VBox listedFieldsLeft = new VBox(10);
-        listedFieldsLeft.getChildren().addAll(name, fieldWidth, fieldHeight, startTrenchQuantity, startTrenchQuality,
-                startTropsQuantity, startTropsEnergy, tropsFullEnergy);
 
-        VBox listedFieldsRight = new VBox(10);
-        listedFieldsRight.getChildren().addAll(supportTropsEnergy, minimalTropsChanges, maximalTropsChanges,
-                tropsLegacyLength, trenchPerDay, movementDetails, tropsMoving, developmentVariant, fieldVariant);
 
-        Label namelabel = new Label("Configuration name");
+        Label namelabel = new Label("Conf name");
         Label fieldWidthlabel = new Label("Field width");
         Label fieldHeightlabel = new Label("Field height");
         Label startTrenchQuantitylabel = new Label("Trench quantity");
-        Label startTrenchQualitylabel = new Label("Trench quality");
-        Label startTropsQuantitylabel = new Label("Trops quantity");
+        Label startTrenchQualitylabel = new Label("Recovery energy");
+        Label startTropsQuantitylabel = new Label("Troops quantity");
         Label startTropsEnergylabel = new Label("Trops energy");
         Label tropsFullEnergylabel = new Label("Full Energy");
         Label supportTropsEnergylabel = new Label("Support Trops Energy");
         Label minimalTropsChangeslabel = new Label("Min trops changes");
         Label maximalTropsChangeslabel = new Label("Max trops changes");
-        Label tropsLegacyLengthlabel = new Label("Trops Legacy");
-        Label trenchPerDaylabel = new Label("How many trenches are built per day");
+        Label tropsLegacyLengthlabel = new Label("Troops overview");
+        Label trenchPerDaylabel = new Label("Trenches built per day");
         Label movementDetailslabel = new Label("Movement details");
-        Label tropsMovinglabel = new Label("Trops moving");
+        Label tropsMovinglabel = new Label("Troops moving");
         Label developmentVariantlabel = new Label("Development Variants");
         Label fieldVariantlabel = new Label("Field Variants");
 
-        VBox leftLabelsList = new VBox(18);
-        VBox rightLabelsList = new VBox(18);
+        VBox leftList = new VBox(10);
+        VBox mediumList = new VBox(10);
+        VBox rightList = new VBox(10);
 
-        leftLabelsList.getChildren().addAll(namelabel, fieldWidthlabel, fieldHeightlabel, startTrenchQuantitylabel,
-                startTrenchQualitylabel, startTropsQuantitylabel, startTropsEnergylabel, tropsFullEnergylabel);
+        leftList.getChildren().addAll(namelabel, name, fieldWidthlabel, fieldWidth, fieldHeightlabel, fieldHeight,
+                startTrenchQuantitylabel, startTrenchQuantity, startTrenchQualitylabel, trenchRecoveryEnergy,
+                startTropsQuantitylabel, startTropsQuantity);
 
-        rightLabelsList.getChildren().addAll(supportTropsEnergylabel, minimalTropsChangeslabel,
-                maximalTropsChangeslabel, tropsLegacyLengthlabel, trenchPerDaylabel, movementDetailslabel,
-                tropsMovinglabel, developmentVariantlabel, fieldVariantlabel);
+        mediumList.getChildren().addAll(startTropsEnergylabel, startTropsEnergy, tropsFullEnergylabel, tropsFullEnergy,
+                supportTropsEnergylabel, supportTropsEnergy, minimalTropsChangeslabel, minimalTropsChanges,
+                maximalTropsChangeslabel, maximalTropsChanges, tropsLegacyLengthlabel, tropsLegacyLength);
 
-        HBox inputList = new HBox(10);
-        inputList.getChildren().addAll(leftLabelsList, rightLabelsList, listedFieldsLeft, listedFieldsRight);
+        rightList.getChildren().addAll(trenchPerDaylabel, trenchPerDay, movementDetailslabel, movementDetails,
+                tropsMovinglabel, tropsMoving, developmentVariantlabel, developmentVariant, fieldVariantlabel, fieldVariant);
+
+        HBox inputList = new HBox(80);
+        inputList.getChildren().addAll(leftList, mediumList, rightList);
         inputList.setAlignment(Pos.TOP_CENTER);
 
         VBox confirmation = new VBox(parametersConfirmation);
         VBox.setVgrow(parametersConfirmation, Priority.ALWAYS);
-        VBox.setMargin(parametersConfirmation, new Insets(60, 0, 200, 0));
+        VBox.setMargin(parametersConfirmation, new Insets(60, 0, 100, 0));
+        confirmation.setAlignment(Pos.TOP_CENTER);
 
         borderPane.setCenter(inputList);
         borderPane.setBottom(confirmation);
-        borderPane.setBackground(new Background(new BackgroundFill(Color.PALETURQUOISE, CornerRadii.EMPTY, Insets.EMPTY)));
+        borderPane.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));
 
 
         parametersConfirmation.setOnAction(action -> {
+
             String configName;
             configName = name.getText();
             if (configName.contains(",") || configName.isEmpty() || configName.charAt(0) == ' '
@@ -125,6 +134,11 @@ public class GetWarData {
             }
             try {
                 if (ConfigurateSelection.find(configName) != null) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("error");
+                    alert.setHeaderText("Incorrect name");
+                    alert.setContentText("Config name already existed, try another one");
+                    alert.showAndWait();
                     throw new Exception("This configuration name is already taken, please choose another one");
                 }
             } catch (Exception e) {
@@ -158,7 +172,7 @@ public class GetWarData {
             textFieldsValues[0] = fieldWidth.getText();
             textFieldsValues[1] = fieldHeight.getText();
             textFieldsValues[2] = startTrenchQuantity.getText();
-            textFieldsValues[3] = startTrenchQuality.getText();
+            textFieldsValues[3] = trenchRecoveryEnergy.getText();
             textFieldsValues[4] = startTropsQuantity.getText();
             textFieldsValues[5] = startTropsEnergy.getText();
             textFieldsValues[6] = tropsFullEnergy.getText();
@@ -171,7 +185,38 @@ public class GetWarData {
             textFieldsValues[13] = tropsMoving.getValue();
             textFieldsValues[14] = developmentVariant.getValue();
             textFieldsValues[15] = fieldVariant.getValue();
+<<<<<<< HEAD
             //Settings parameters;  //is required to create new class
+=======
+
+            Settings parameter;
+
+            try {
+                parameter = new Settings(configName, textFieldsValues);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("error");
+                alert.setHeaderText("WRONG INPUT DATA");
+                alert.setContentText("Check and repair your settings and then try again");
+                alert.showAndWait();
+
+                throw new RuntimeException(e);
+            }
+
+            try {
+                ConfigurateSelection.add(configName, textFieldsValues);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                new LaunchApp(parameter);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+            stage.close();
+>>>>>>> szymon_backup
         });
     }
 }

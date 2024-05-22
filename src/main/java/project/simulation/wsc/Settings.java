@@ -11,7 +11,7 @@ public class Settings {
     private final int startTropsEnergy;
     private final int tropsFullEnergy;
     private final int supportTropsEnergy;
-    private final int troopsOverViewLength;
+    private final int troopsOverviewLength;
     private final AbstractFieldMap map;
     private final IMove troopMoving;
     private final ITroopOverview developmentVariant;
@@ -22,14 +22,14 @@ public class Settings {
         fieldHeight = Integer.parseInt(config[1]);
         startTrenchQuantity = Integer.parseInt(config[2]);
         recoveryTrenchEnergy = Integer.parseInt(config[3]);   //eating grass energy
-        trenchPerDay = Integer.parseInt(config[4]);
-        startTropsQuantity = Integer.parseInt(config[5]);
-        startTropsEnergy = Integer.parseInt(config[6]);
-        tropsFullEnergy = Integer.parseInt(config[7]);
-        supportTropsEnergy = Integer.parseInt(config[8]);       //energy lost to get a support
-        int minimalTroopsChanges = Integer.parseInt(config[9]); //TODO
-        int maximalTroopsChanges = Integer.parseInt(config[10]); //TODO
-        troopsOverViewLength = Integer.parseInt(config[11]); //associated directly with overview
+        startTropsQuantity = Integer.parseInt(config[4]);
+        startTropsEnergy = Integer.parseInt(config[5]);
+        tropsFullEnergy = Integer.parseInt(config[6]);
+        supportTropsEnergy = Integer.parseInt(config[7]);       //energy lost to get a support
+        int minimalOverviewChanges = Integer.parseInt(config[8]); //TODO
+        int maximalOverviewChanges = Integer.parseInt(config[9]); //TODO
+        troopsOverviewLength = Integer.parseInt(config[10]); //associated directly with overview
+        trenchPerDay = Integer.parseInt(config[11]);
         IMoveAllowed movementDetails;
 
 
@@ -50,30 +50,33 @@ public class Settings {
         }
 
         if (startTropsQuantity <= 0 || startTropsEnergy <= 0) {
-            throw new Exception("wrong startTrops data");
+            throw new Exception("wrong startTroops data");
         }
         if (tropsFullEnergy < 0 || supportTropsEnergy < 0) {
             throw new Exception("wrong troopsEnergy data");
         }
-        if (minimalTroopsChanges < 0 || minimalTroopsChanges > maximalTroopsChanges || troopsOverViewLength <= 0) {
-            throw new Exception("wrong troops changes and legacy data");
+        if (startTropsEnergy > tropsFullEnergy  || supportTropsEnergy > tropsFullEnergy) {
+            throw new Exception("wrong troopsEnergy data");
+        }
+        if (minimalOverviewChanges < 0 || minimalOverviewChanges > maximalOverviewChanges || troopsOverviewLength <= 0) {
+            throw new Exception("wrong troops changes and overview data");    //TODO
         }
 
-        switch (config[12]){
+        switch (config[12]) {
+            case "Only earth's surface" -> movementDetails = new OnlySurfaceMoveAllowed();
+            case "Surface and Underground" -> movementDetails = new UndergroundMoveAllowed();
+            default ->  throw new Exception("Wrong movementsDetails data");
+        }
+
+        switch (config[13]){
             case "Position war" -> troopMoving = new PositionWarMove();
             case "Total war" -> troopMoving = new TotalWarMove();
             default ->  throw new Exception("wrong troopMoving data");
         }
-        switch (config[13]) {
-            case "Correction" -> developmentVariant = new LittleCorrectionProperties();
-            case "Random" -> developmentVariant = new FullRandomProperties();
-            default -> throw new Exception("wrong developmentVariant data");
-        }
-
         switch (config[14]) {
-            case "Only earth's surface" -> movementDetails = new OnlySurfaceMoveAllowed();
-            case "Surface and Underground" -> movementDetails = new UndergroundMoveAllowed();
-            default ->  throw new Exception("Wrong movementsDetails data");
+            case "Correction" -> developmentVariant = new LittleCorrectionProperties();
+            case "Random" -> developmentVariant = new FullRandomProperties(maximalOverviewChanges, minimalOverviewChanges);
+            default -> throw new Exception("wrong developmentVariant data");
         }
 
         switch (config[15]) {
@@ -132,8 +135,8 @@ public class Settings {
         return troopMoving;
     }
 
-    public int getTroopsOverViewLength() {
-        return troopsOverViewLength;
+    public int getTroopsOverviewLength() {
+        return troopsOverviewLength;
     }
 
     public ITroopOverview getDevelopmentVariant() {

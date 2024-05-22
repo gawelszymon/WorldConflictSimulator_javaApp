@@ -1,3 +1,5 @@
-example configuration 1,12,11,5,1,8,15,10,15,5,2,9,8,Predestination,Random,Earth,Corpses
-example configuration 2,10,10,5,1,8,15,10,15,5,2,9,8,Craziness,Correction,Earth,Equators
-example configuration 3,20,10,5,1,8,15,10,15,5,2,9,8,Craziness,Random,Portal,Corpses
+
+ex1,30,30,5,3,15,6,7,5,2,5,5,3,Surface and Underground,Total war,Random,Geographic map
+ex2,15,15,2,2,4,4,5,2,1,2,5,1,Only earth's surface,Position war,Random,Geographic map
+jfsoigfna,12,11,5,1,8,15,17,15,2,5,9,8,Only earth's surface,Total war,Correction,Corpses map
+name,20,20,2,1,15,8,9,5,2,5,94,3,Only earth's surface,Total war,Random,Corpses map

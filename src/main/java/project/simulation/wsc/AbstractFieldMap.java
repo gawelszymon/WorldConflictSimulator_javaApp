@@ -1,5 +1,10 @@
 package project.simulation.wsc;
 
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
 import java.util.*;
 
 //the abstract class is a kind of class that cannot be directly instance using word "new", the purpose of this class is to
@@ -21,8 +26,11 @@ abstract public class AbstractFieldMap implements IFieldMap, IElementChangeObser
     protected final ArrayList<Troop> troopsList = new ArrayList<>();
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> szymon_backup
     protected AbstractFieldMap(int width, int height, IMoveAllowed movementDetails, int extraTroopsEnergy) {
         elements = new HashMap<>();
         this.movementDetails = movementDetails;
