@@ -59,7 +59,7 @@
 <img src="screenshots/s2.png" alt="Screenshot 2">
 <img src="screenshots/s3.png" alt="Screenshot 3">
 <img src="screenshots/s4.png" alt="Screenshot 4">
-<img src="screenshots/s5.jgp" alt="Screenshot 5">
+<img src="screenshots/s5.png" alt="Screenshot 5">
 
 <h2 id="contributing">Contributing</h2>
 <p>If you wish to contribute to the project, please follow these guidelines:</p>
