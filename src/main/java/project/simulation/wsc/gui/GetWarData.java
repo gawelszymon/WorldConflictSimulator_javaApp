@@ -17,17 +17,14 @@ import java.io.FileNotFoundException;
 
 public class GetWarData {
 
+    private final BorderPane borderPane;
     private final Stage stage;
-    private final BorderPane borderPane = new BorderPane();
 
-    public GetWarData() throws FileNotFoundException {
-        this.stage = new Stage();
-        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
-        stage.setTitle("WCS simulation");
-        stage.setScene(new Scene(borderPane, 880, 550));
-        stage.show();
+    public GetWarData(BorderPane existingPane, Stage existingStage) {
+        this.borderPane = existingPane;
+        this.stage = existingStage;
 
-        Label title = new Label("Notice the danger caused by war...");
+        Label title = new Label("Enter conflict's details");
         //title.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 22pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
         borderPane.setTop(title);
         BorderPane.setAlignment(title, Pos.CENTER);
@@ -108,9 +105,10 @@ public class GetWarData {
 
         borderPane.setCenter(inputList);
         borderPane.setBottom(confirmation);
-        borderPane.setBackground(new Background(new BackgroundFill(Color.PALETURQUOISE, CornerRadii.EMPTY, Insets.EMPTY)));
+        borderPane.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));
 
         parametersConfirmation.setOnAction(action -> {
+
             String configName;
             configName = name.getText();
             if (configName.contains(",") || configName.isEmpty() || configName.charAt(0) == ' '
@@ -200,6 +198,7 @@ public class GetWarData {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+
             stage.close();
         });
     }

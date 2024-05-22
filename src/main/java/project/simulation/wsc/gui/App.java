@@ -19,14 +19,18 @@ import java.io.IOException;
 
 
 public class App extends Application {
+
     private final BorderPane border = new BorderPane();
+    private Stage primaryStage;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         primaryStage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
         primaryStage.setTitle("WCS initialization");
         primaryStage.alwaysOnTopProperty();
-        primaryStage.setScene(new Scene(border, 880, 460));
+        primaryStage.setScene(new Scene(border, 880, 550));
         primaryStage.show();
     }
 
@@ -63,7 +67,7 @@ public class App extends Application {
             try {
                 String items = confVariant.getValue();
                 if (items.equals("configuration")) {
-                    new GetWarData();
+                    new GetWarData(border, primaryStage);
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
