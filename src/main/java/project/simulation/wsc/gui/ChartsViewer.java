@@ -5,10 +5,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import project.simulation.wsc.SimulationEngine;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ChartsViewer {
 
@@ -24,23 +28,21 @@ public class ChartsViewer {
     private final StatisticChart deathTroopsChart = new StatisticChart("Death troops");
 
 
-    public ChartsViewer(Stage mainStage, SimulationEngine engine) {
+    public ChartsViewer(Stage mainStage, SimulationEngine engine) throws FileNotFoundException {
         this.engine = engine;
         this.borderPane = new BorderPane();
         Scene scene = new Scene(borderPane, 800, 800);
         this.stage = new Stage();
         stage.setScene(scene);
         stage.initOwner(mainStage);
+        stage.setTitle("Charts");
+        stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
 
         stage.setOnCloseRequest(event -> this.stage.hide());
 
-        Button closeButton = new Button("Close");
-        closeButton.setAlignment(Pos.CENTER);
-        closeButton.setOnAction(action -> this.stage.hide());
-
         Label title = new Label("Simulation Charts");
 
-        HBox mainDescription = new HBox(10, title, closeButton);
+        HBox mainDescription = new HBox(10, title);
         mainDescription.setAlignment(Pos.CENTER);
         //borderPane.setBackground(new Background(new BackgroundFill(Color.PALETURQUOISE, CornerRadii.EMPTY, Insets.EMPTY)));
         BorderPane.setMargin(mainDescription, new Insets(20, 0, 20, 0));

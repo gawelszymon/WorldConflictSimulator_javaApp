@@ -70,8 +70,8 @@ public class FieldCreate {
 
         for (int i = 0; i < parameters.getFieldWidth(); i++) {
 
-            int x = parameters.getFieldWidth();
-            int y = parameters.getFieldHeight();
+            //int x = parameters.getFieldWidth();
+            //int y = parameters.getFieldHeight();
 
             /*
             for (int _x = 0; _x <= x; _x++) {

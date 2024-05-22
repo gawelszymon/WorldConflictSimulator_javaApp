@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import java.io.FileInputStream;
 import project.simulation.wsc.*;
 
 import java.io.FileInputStream;
@@ -33,6 +34,9 @@ public class LaunchApp {
     private final InfoElement boxAboutTroops;
     private final ChartsViewer charts;
 
+    private Stage statsStage;
+    private VBox statsVBox;
+
     public LaunchApp(Settings parameters) throws FileNotFoundException {        //REVIEW
 
         this.stage = new Stage();
@@ -48,13 +52,11 @@ public class LaunchApp {
         stage.setScene(sceneMain);
         stage.show();
         stage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
-        stage.setTitle("War's force of damage");
+        stage.setTitle("Simulation");
 
         Label tittle = new Label("War which does not have proper respect to existing");
-        //tittle.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 22pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
         borderPane.setTop(tittle); //TODO
         BorderPane.setAlignment(tittle, Pos.CENTER);
-        //borderPane.setBackground(new Background(new BackgroundFill(Color.PALETURQUOISE, CornerRadii.EMPTY, Insets.EMPTY)));
         BorderPane.setMargin(tittle, new Insets(20, 0, 20, 0));
 
         engine = new SimulationEngine(parameters);
@@ -82,7 +84,6 @@ public class LaunchApp {
     }
 
     private void startApp() {
-        //startButton.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84)");
         borderPane.setCenter(startButton);
 
         startButton.setOnAction(actionEvent -> {
@@ -109,80 +110,117 @@ public class LaunchApp {
         borderPane.setBottom(buttons);
         BorderPane.setAlignment(buttons, Pos.CENTER);
         BorderPane.setMargin(buttons, new Insets(10, 0, 10, 0));
-        //exitButton.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
-        //buttonEndTracking.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+    }
+
+    private VBox createStatsVBox() {
+        VBox statistics = new VBox(15);
+        statistics.setAlignment(Pos.TOP_CENTER);
+        statistics.setPadding(new Insets(10));
+        statistics.setStyle("-fx-border-width: 1px; -fx-border-color: black;");
+
+        return statistics;
     }
 
     public void uploadMap() {       //TODO
         Platform.runLater(() -> {
             charts.updateCharts();
 
-            VBox stat = uploadStats();
-            stat.setAlignment(Pos.CENTER);
-            stat.setMaxHeight(stage.getHeight() / 1.5);
-            //stat.setStyle("-fx-background-color: rgba(8,56,65,0.84);");
+            if (statsVBox == null) {
+                statsVBox = createStatsVBox();
+            }
+            uploadStats(statsVBox);
+            statsVBox.setAlignment(Pos.CENTER);
+            statsVBox.setMaxHeight(stage.getHeight() / 1.5);
 
-            stat.setOnMouseClicked(event -> charts.chartsShow());
+            charts.chartsShow();
 
             newField.create();
             GridPane gridPane = newField.getGridPane();
             gridPane.setGridLinesVisible(true);
 
             HBox hbox = new HBox(10);
-            hbox.getChildren().addAll(gridPane, stat);
+            hbox.getChildren().addAll(gridPane);
             hbox.setAlignment(Pos.CENTER);
 
             updateInfo();
             borderPane.setCenter(hbox);
+
+            try {
+                openStatsWindow(statsVBox);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
-    private VBox uploadStats() {
+    private void uploadStats(VBox statsVBox) {
         StatisticCounter statsCounter = engine.getStatsCounter();
         statsCounter.statisticUpdate();
 
-        //String labelStyle = "-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);";
+        statsVBox.getChildren().clear();
+
 
         Label title = new Label("Field Statistic");
 
         Label warDays = new Label("War's day: " + statsCounter.getWarDays());
-        //warDays.setStyle(labelStyle);
 
         Label numberOfSurvivedTroops = new Label("Number of survived troops: " + statsCounter.getNumberTroops());
-        //numberOfSurvivedTroops.setStyle(labelStyle);
 
         Label numberOfTrenches = new Label("Number of trenches: " + statsCounter.getNumberTrenches());
-        //numberOfTrenches.setStyle(labelStyle);
 
         Label numberOfDeadTroops = new Label("Number of dead troops: " + statsCounter.getNumberDeadTroops());
-        //numberOfDeadTroops.setStyle(labelStyle);
 
         Label avgEnergyLevel = new Label("Average of energy: " + statsCounter.getAvgEnergyLevel());
-        //avgEnergyLevel.setStyle(labelStyle);
 
         Label avgLifeDaysDeadTroops = new Label("Average of life: " + statsCounter.getAvgLife());
-        //avgLifeDaysDeadTroops.setStyle(labelStyle);
 
         Label avgSupport = new Label("Support per troop: " + statsCounter.getAvgSupportTroops());
-        //avgSupport.setStyle(labelStyle);
 
         Label mainFeature = new Label("Main feature: " + statsCounter.getMainFeature());
-        //mainFeature.setStyle(labelStyle);
 
         Label freeSpace = new Label("Free space: " + statsCounter.getFreeSpaceQuantity());
-        //freeSpace.setStyle(labelStyle);
 
-        VBox statistics = new VBox(15);
-        statistics.getChildren().addAll(title, warDays, numberOfSurvivedTroops, numberOfTrenches, numberOfDeadTroops,
+       // VBox statistics = new VBox(15);
+        statsVBox.getChildren().addAll(title, warDays, numberOfSurvivedTroops, numberOfTrenches, numberOfDeadTroops,
                 avgEnergyLevel, avgLifeDaysDeadTroops, avgSupport, mainFeature, freeSpace);
-        statistics.setAlignment(Pos.TOP_CENTER);
+        statsVBox.setAlignment(Pos.TOP_CENTER);
 
-        //title.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);-fx-font-weight: bold;");
         title.setFont(new Font(15));
 
-        statistics.setStyle(String.valueOf(new Insets(0, 1, 1, 50)));
-        return statistics;
+        statsVBox.setStyle(String.valueOf(new Insets(0, 1, 1, 50)));
     }
+
+    private void openStatsWindow(VBox stat) throws FileNotFoundException {
+        if (statsStage == null) {
+            statsStage = new Stage();
+            statsStage.getIcons().add(new Image(new FileInputStream("src/main/resources/map.png")));
+            statsStage.setTitle("Stats");
+
+            Scene secondScene = new Scene(stat, 300, 400);
+            statsStage.setScene(secondScene);
+
+            statsStage.setX(stage.getX() + 200);
+            statsStage.setY(stage.getY() + 100);
+        }
+
+        statsStage.show();
+    }
+
+        /*private void openNewWindow() {
+            VBox statsVBox = uploadStats();
+
+            Scene secondScene = new Scene(statsVBox, 300, 400);
+
+            Stage newWindow = new Stage();
+            newWindow.setTitle("Statistics");
+            newWindow.setScene(secondScene);
+
+            newWindow.setX(100);
+            newWindow.setY(100);
+
+            newWindow.show();
+        }*/
+
 
     public void updateInfo() {
         if (followingTroop != null) {
