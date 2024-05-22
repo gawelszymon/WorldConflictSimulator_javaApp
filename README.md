@@ -73,9 +73,5 @@
     <pre><code>git push origin feature-name</code></pre>
     <li>Create a pull request on GitHub.</li>
 </ol>
-
-<h2 id="license">License</h2>
-<p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.</p>
-
 </body>
 </html>
