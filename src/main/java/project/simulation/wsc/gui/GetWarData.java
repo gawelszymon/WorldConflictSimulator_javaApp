@@ -35,17 +35,17 @@ public class GetWarData {
 
     private void initWarData() {
         TextField name = new TextField("name");
-        TextField fieldWidth = new TextField("10");
-        TextField fieldHeight = new TextField("15");
+        TextField fieldWidth = new TextField("12");
+        TextField fieldHeight = new TextField("11");
         TextField startTrenchQuantity = new TextField("5");
-        TextField trenchRecoveryEnergy = new TextField("7");
-        TextField startTropsQuantity = new TextField("5");
-        TextField startTropsEnergy = new TextField("8");
+        TextField trenchRecoveryEnergy = new TextField("1");
+        TextField startTropsQuantity = new TextField("8");
+        TextField startTropsEnergy = new TextField("15");
         TextField tropsFullEnergy = new TextField("10");
-        TextField supportTropsEnergy = new TextField("7");
-        TextField minimalTropsChanges = new TextField("2"); //TODO
-        TextField maximalTropsChanges = new TextField("9"); //TODO
-        TextField tropsLegacyLength = new TextField("8");
+        TextField supportTropsEnergy = new TextField("15");
+        TextField minimalTropsChanges = new TextField("5"); //TODO
+        TextField maximalTropsChanges = new TextField("2"); //TODO
+        TextField tropsLegacyLength = new TextField("9");
         TextField trenchPerDay = new TextField("8");
 
         ChoiceBox<String> movementDetails = new ChoiceBox<>();
@@ -126,6 +126,11 @@ public class GetWarData {
             }
             try {
                 if (ConfigurateSelection.find(configName) != null) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("error");
+                    alert.setHeaderText("Incorrect name");
+                    alert.setContentText("Config name already existed, try another one");
+                    alert.showAndWait();
                     throw new Exception("This configuration name is already taken, please choose another one");
                 }
             } catch (Exception e) {

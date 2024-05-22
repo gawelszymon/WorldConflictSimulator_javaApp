@@ -19,7 +19,7 @@ public class StatisticChart {
         this.mapSeries = new XYChart.Series();
 
         chart.setTitle(title);
-        mapSeries.setName("Field's Map information");
+        mapSeries.setName(null);
         chart.setCreateSymbols(false);
         //TODO style
         chart.getData().addAll(mapSeries);

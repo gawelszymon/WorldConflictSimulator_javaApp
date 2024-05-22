@@ -61,13 +61,26 @@ public class App extends Application {
         border.setCenter(inputList);
         border.setBottom(confirmation);
         confirmation.setAlignment(Pos.BOTTOM_CENTER);
-        border.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
+        //border.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         confirmButton.setOnAction(action -> {
             try {
                 String items = confVariant.getValue();
                 if (items.equals("configuration")) {
                     new GetWarData(border, primaryStage);
+                } else {
+                    String[] headers = ConfigurateSelection.names();
+                    for (String name : headers) {
+                        if (items.equals(name)) {
+                            String[] parameters = ConfigurateSelection.find(name);
+                            if (parameters != null) {
+                                Settings settings = new Settings(name, parameters);
+                                new LaunchApp(settings);
+                            } else {
+                                throw new Exception("wrong configuration");
+                            }
+                        }
+                    }
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);

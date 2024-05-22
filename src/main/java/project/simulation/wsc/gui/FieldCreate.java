@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.controlsfx.control.spreadsheet.Grid;
@@ -67,14 +69,32 @@ public class FieldCreate {
         int freeSpace = 0;
 
         for (int i = 0; i < parameters.getFieldWidth(); i++) {
+
+            int x = parameters.getFieldWidth();
+            int y = parameters.getFieldHeight();
+
+            /*
+            for (int _x = 0; _x <= x; _x++) {
+                Line line = new Line(0, x * 50, 300, x * 50);
+                line.setStroke(Color.BLACK);
+                gridPane.add(line, 0, _x, y + 1, 1);
+            }
+
+            for (int _y = 0; _y <= y; _y++) {
+                Line line = new Line(0, y * 50, 300, y * 50);
+                line.setStroke(Color.BLACK);
+                gridPane.add(line, 0, _y, x + 1, 1);
+            }
+             */
+
             for (int j = 0; j < parameters.getFieldHeight(); j++) {
-                StackPane grasses = new StackPane();
+                StackPane trenches = new StackPane();
                 if (mapContain.contains(new Vector2D(i, j))) {
-                    grasses.setStyle("-fx-background-color: rgba(177,234,167,0.84)");
-                    gridPane.add(grasses, i, j);
+                    //trenches.setStyle("-fx-background-color: rgba(177,234,167,0.84)");
+                    gridPane.add(trenches, i, j);
                 } else {
-                    grasses.setStyle("-fx-background-color: rgb(8,56,65)");
-                    gridPane.add(grasses, i, j);
+                    //trenches.setStyle("-fx-background-color: rgb(8,56,65)");
+                    gridPane.add(trenches, i, j);
                 }
 
                 Vector2D position = new Vector2D(i, j);
@@ -101,7 +121,7 @@ public class FieldCreate {
                         imageView.setFitWidth(imageWidth);
 
                         Label posit = new Label(position.toString());
-                        posit.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+                        //posit.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
                         posit.setFont(Font.font(20 / (0.2 * size)));
 
                         ContentBox imgTroop = new ContentBox(troop, engine);
@@ -114,14 +134,14 @@ public class FieldCreate {
 
                         Label live = new Label(String.format("%.2f%%", lifeBar.getProgress() * 100));
                         live.setVisible(false);
-                        live.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+                        //live.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
 
                         StackPane stackPane = new StackPane(imageView, live);
                         stackPane.setOnMouseEntered(event -> live.setVisible(true));
                         stackPane.setOnMouseExited(event -> live.setVisible(false));
 
                         if (troop.getMainFeatureID() == app.getMainFeature()) {
-                            stackPane.setStyle("-fx-border-width: 3; -fx-border-color: #33e30d;");
+                        //    stackPane.setStyle("-fx-border-width: 3; -fx-border-color: #33e30d;");
                         }
 
                         setButtonOnAction(stackPane, (Troop) troop, engine);
@@ -140,7 +160,7 @@ public class FieldCreate {
 
                     if (Objects.requireNonNull(square).didTrenchBuild()) {
                         Label posit = new Label(position.toString());
-                        posit.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+                        //posit.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
                         posit.setFont(Font.font(20 / (0.2 * size)));
 
                         double imageHeight = 500 / (1.5 * size);

@@ -51,10 +51,10 @@ public class LaunchApp {
         stage.setTitle("War's force of damage");
 
         Label tittle = new Label("War which does not have proper respect to existing");
-        tittle.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 22pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+        //tittle.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 22pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
         borderPane.setTop(tittle); //TODO
         BorderPane.setAlignment(tittle, Pos.CENTER);
-        borderPane.setBackground(new Background(new BackgroundFill(Color.PALETURQUOISE, CornerRadii.EMPTY, Insets.EMPTY)));
+        //borderPane.setBackground(new Background(new BackgroundFill(Color.PALETURQUOISE, CornerRadii.EMPTY, Insets.EMPTY)));
         BorderPane.setMargin(tittle, new Insets(20, 0, 20, 0));
 
         engine = new SimulationEngine(parameters);
@@ -82,7 +82,7 @@ public class LaunchApp {
     }
 
     private void startApp() {
-        startButton.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84)");
+        //startButton.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84)");
         borderPane.setCenter(startButton);
 
         startButton.setOnAction(actionEvent -> {
@@ -109,8 +109,8 @@ public class LaunchApp {
         borderPane.setBottom(buttons);
         BorderPane.setAlignment(buttons, Pos.CENTER);
         BorderPane.setMargin(buttons, new Insets(10, 0, 10, 0));
-        exitButton.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
-        buttonEndTracking.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+        //exitButton.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
+        //buttonEndTracking.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-font-size: 15 pt; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);");
     }
 
     public void uploadMap() {       //TODO
@@ -120,7 +120,7 @@ public class LaunchApp {
             VBox stat = uploadStats();
             stat.setAlignment(Pos.CENTER);
             stat.setMaxHeight(stage.getHeight() / 1.5);
-            stat.setStyle("-fx-background-color: rgba(8,56,65,0.84);");
+            //stat.setStyle("-fx-background-color: rgba(8,56,65,0.84);");
 
             stat.setOnMouseClicked(event -> charts.chartsShow());
 
@@ -141,43 +141,43 @@ public class LaunchApp {
         StatisticCounter statsCounter = engine.getStatsCounter();
         statsCounter.statisticUpdate();
 
-        String labelStyle = "-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);";
+        //String labelStyle = "-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);";
 
         Label title = new Label("Field Statistic");
 
         Label warDays = new Label("War's day: " + statsCounter.getWarDays());
-        warDays.setStyle(labelStyle);
+        //warDays.setStyle(labelStyle);
 
         Label numberOfSurvivedTroops = new Label("Number of survived troops: " + statsCounter.getNumberTroops());
-        numberOfSurvivedTroops.setStyle(labelStyle);
+        //numberOfSurvivedTroops.setStyle(labelStyle);
 
         Label numberOfTrenches = new Label("Number of trenches: " + statsCounter.getNumberTrenches());
-        numberOfTrenches.setStyle(labelStyle);
+        //numberOfTrenches.setStyle(labelStyle);
 
         Label numberOfDeadTroops = new Label("Number of dead troops: " + statsCounter.getNumberDeadTroops());
-        numberOfDeadTroops.setStyle(labelStyle);
+        //numberOfDeadTroops.setStyle(labelStyle);
 
         Label avgEnergyLevel = new Label("Average of energy: " + statsCounter.getAvgEnergyLevel());
-        avgEnergyLevel.setStyle(labelStyle);
+        //avgEnergyLevel.setStyle(labelStyle);
 
         Label avgLifeDaysDeadTroops = new Label("Average of life: " + statsCounter.getAvgLife());
-        avgLifeDaysDeadTroops.setStyle(labelStyle);
+        //avgLifeDaysDeadTroops.setStyle(labelStyle);
 
         Label avgSupport = new Label("Support per troop: " + statsCounter.getAvgSupportTroops());
-        avgSupport.setStyle(labelStyle);
+        //avgSupport.setStyle(labelStyle);
 
         Label mainFeature = new Label("Main feature: " + statsCounter.getMainFeature());
-        mainFeature.setStyle(labelStyle);
+        //mainFeature.setStyle(labelStyle);
 
         Label freeSpace = new Label("Free space: " + statsCounter.getFreeSpaceQuantity());
-        freeSpace.setStyle(labelStyle);
+        //freeSpace.setStyle(labelStyle);
 
         VBox statistics = new VBox(15);
         statistics.getChildren().addAll(title, warDays, numberOfSurvivedTroops, numberOfTrenches, numberOfDeadTroops,
                 avgEnergyLevel, avgLifeDaysDeadTroops, avgSupport, mainFeature, freeSpace);
         statistics.setAlignment(Pos.TOP_CENTER);
 
-        title.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);-fx-font-weight: bold;");
+        //title.setStyle("-fx-font-family: 'Bauhaus 93'; -fx-text-fill: #30cbc8; -fx-background-color: rgba(8,56,65,0.84);-fx-font-weight: bold;");
         title.setFont(new Font(15));
 
         statistics.setStyle(String.valueOf(new Insets(0, 1, 1, 50)));
