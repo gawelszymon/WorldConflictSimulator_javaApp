@@ -42,18 +42,18 @@ public class GetWarData {
 
     private void initWarData() {
         TextField name = new TextField("name");
-        TextField fieldWidth = new TextField("12");
-        TextField fieldHeight = new TextField("11");
+        TextField fieldWidth = new TextField("30");
+        TextField fieldHeight = new TextField("30");
         TextField startTrenchQuantity = new TextField("5");
-        TextField trenchRecoveryEnergy = new TextField("1");
-        TextField startTropsQuantity = new TextField("8");
-        TextField startTropsEnergy = new TextField("15");
-        TextField tropsFullEnergy = new TextField("10");
-        TextField supportTropsEnergy = new TextField("15");
-        TextField minimalTropsChanges = new TextField("5"); //TODO
+        TextField trenchRecoveryEnergy = new TextField("2");
+        TextField startTropsQuantity = new TextField("300");
+        TextField startTropsEnergy = new TextField("5");
+        TextField tropsFullEnergy = new TextField("7");
+        TextField supportTropsEnergy = new TextField("4");
+        TextField minimalTropsChanges = new TextField("1"); //TODO
         TextField maximalTropsChanges = new TextField("2"); //TODO
-        TextField tropsLegacyLength = new TextField("9");
-        TextField trenchPerDay = new TextField("8");
+        TextField tropsLegacyLength = new TextField("5");
+        TextField trenchPerDay = new TextField("2");
 
         ChoiceBox<String> movementDetails = new ChoiceBox<>();
         movementDetails.getItems().addAll("Only earth's surface", "Surface and Underground");

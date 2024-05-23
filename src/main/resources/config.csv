@@ -1,3 +1,5 @@
 
 ex1,30,30,5,3,15,6,7,5,2,5,5,3,Surface and Underground,Total war,Random,Geographic map
 ex2,15,15,2,2,4,4,5,2,1,2,5,1,Only earth's surface,Position war,Random,Geographic map
+ex3,30,30,5,2,4,5,7,4,1,2,5,2,Surface and Underground,Position war,Random,Geographic map
+main_ex,30,30,5,2,300,5,7,4,1,2,5,2,Surface and Underground,Position war,Correction,Geographic map
