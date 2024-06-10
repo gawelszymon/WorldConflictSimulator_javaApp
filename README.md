@@ -7,7 +7,7 @@
 <body>
 
 <h1>World Conflict Simulator</h1>
-<p>Welcome to the World Conflict Simulator project. This application, built using Maven and JavaFX, simulates conflicts between different entities in a world setting.</p>
+<p>Welcome to the World Conflict Simulator project. This application, built using Maven and JavaFX, simulates conflicts between different entities in a world setting. Based on: https://github.com/MicelloK/evolution-simulator</p>
 
 <h2>Table of Contents</h2>
 <ul>
